@@ -65,12 +65,19 @@ config change is needed for a standard `user.github.io/<repo>` deployment.
   defaults in [`astro.config.mjs`](astro.config.mjs) — and add a
   `public/CNAME` file.
 
+## Brand assets
+
+Official Midnight assets are used **as-is** and live in
+[`public/brand/`](public/brand/README.md) — `midnight-wordmark.svg`,
+`favicon.svg` / `favicon.png`, and the editor `portrait.png`. The Midnight logo
+must not be recreated or modified. Missing assets degrade gracefully (the header
+falls back to plain text; the hero omits the portrait).
+
 ## Cover images
 
-Edition covers live in `public/covers/`. The September cover ships as an SVG
-placeholder (`public/covers/2026-09.svg`). To use the real artwork, drop
-`public/covers/2026-09.png` in and change `cover:` in
-`src/content/editions/2026-09-signals-1.md` to `covers/2026-09.png`.
+Edition key art lives in `public/covers/`, named to match the edition
+(`2026-09.png`). Reference it from the edition frontmatter as
+`cover: "covers/2026-09.png"` (path relative to `public/`, no leading slash).
 
 ## License
 

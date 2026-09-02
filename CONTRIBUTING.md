@@ -87,7 +87,7 @@ Files whose name starts with `_` (like `_TEMPLATE.md`) are ignored by the build.
    title: "Midnight Technical Signals — September #1"
    edition: "September 2026 · #1"
    date: 2026-09-01
-   cover: "covers/2026-09.svg"   # file in /public
+   cover: "covers/2026-09.png"   # file in /public/covers
    summary: >-
      2–4 sentence overview used in cards and meta description.
    tags: ["protocol", "ledger-9", "compact"]
@@ -95,8 +95,9 @@ Files whose name starts with `_` (like `_TEMPLATE.md`) are ignored by the build.
    ```
 
 3. Body is standard Markdown. Use `##` for each numbered development.
-4. Add the cover image to `public/covers/` (SVG or PNG, ~1200×630). Reference it
-   from `cover:` relative to `public/` (no leading slash).
+4. Add the cover image to `public/covers/` (PNG/JPG/SVG, ~1200×630). Reference it
+   from `cover:` relative to `public/` (no leading slash). Use official Midnight
+   key art — do not recreate brand marks.
 5. Open a PR. Merging to `main` triggers the deploy workflow.
 
 ### Release checklist

@@ -14,7 +14,8 @@ const path = Astro.url.pathname.replace(/\/$/, '');
 <header class="site-header">
   <div class="wrap-wide site-header__inner">
     <a href={withBase('/')} class="site-header__brand" aria-label={SITE.name}>
-      <Logo />
+      <Logo height={20} />
+      <span class="site-header__pub">Signals</span>
     </a>
     <nav class="site-header__nav">
       {
@@ -50,6 +51,20 @@ const path = Astro.url.pathname.replace(/\/$/, '');
     gap: 1rem;
     padding-top: 0.85rem;
     padding-bottom: 0.85rem;
+  }
+  .site-header__brand {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .site-header__pub {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 1rem;
+    letter-spacing: -0.01em;
+    color: var(--text-dim);
+    padding-left: 0.6rem;
+    border-left: 1px solid var(--border-strong);
   }
   .site-header__nav {
     display: flex;

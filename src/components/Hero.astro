@@ -1,36 +1,52 @@
 ---
 import Pillars from './Pillars.astro';
+import Logo from './Logo.astro';
+import { withBase } from '../lib/path';
 
 interface Props {
   kicker?: string;
-  line1: string;
-  line2: string;
+  title: string;
   blurb?: string;
+  portrait?: string;
 }
-const { kicker = 'Technical updates for developers', line1, line2, blurb } = Astro.props;
+const {
+  kicker = 'Technical updates for developers',
+  title,
+  blurb,
+  portrait = 'brand/portrait.png',
+} = Astro.props;
 ---
 
 <section class="hero">
   <div class="grid-floor"></div>
   <div class="wrap-wide hero__inner">
     <div class="hero__text">
-      <p class="eyebrow">{kicker}</p>
-      <h1 class="hero__title">
-        <span>{line1}</span>
-        <span class="gradient-text">{line2}</span>
-      </h1>
+      <div class="hero__lockup">
+        <Logo height={22} />
+        <span>{kicker}</span>
+      </div>
+      <h1 class="hero__title gradient-text">{title}</h1>
       {blurb && <p class="hero__blurb">{blurb}</p>}
       <Pillars />
     </div>
 
-    <pre class="hero__code" aria-hidden="true"><code><span class="ln">01</span> <span class="k">import</span> {'{'} Midnight {'}'} <span class="k">from</span> <span class="s">'midnight'</span>;
-<span class="ln">02</span> <span class="k">const</span> app = <span class="k">new</span> <span class="fn">Midnight</span>();
-<span class="ln">03</span>
-<span class="ln">04</span> app.<span class="fn">build</span>();
-<span class="ln">05</span> app.<span class="fn">deploy</span>();
-<span class="ln">06</span>
-<span class="ln">07</span> <span class="c">// privacy by default</span>
-<span class="ln">08</span></code></pre>
+    <div class="hero__media">
+      <img
+        class="hero__portrait"
+        src={withBase(portrait)}
+        alt=""
+        loading="eager"
+        decoding="async"
+        onerror="this.style.display='none'"
+      />
+      <pre class="hero__code" aria-hidden="true"><code><span class="k">import</span> {'{'} Midnight {'}'} <span class="k">from</span> <span class="s">'midnight'</span>;
+<span class="k">const</span> app = <span class="k">new</span> <span class="fn">Midnight</span>();
+
+app.<span class="fn">build</span>();
+app.<span class="fn">deploy</span>();
+
+<span class="c">// privacy by default</span></code></pre>
+    </div>
   </div>
 </section>
 
@@ -39,48 +55,82 @@ const { kicker = 'Technical updates for developers', line1, line2, blurb } = Ast
     position: relative;
     overflow: hidden;
     border-bottom: 1px solid var(--border);
-    background:
-      radial-gradient(700px 340px at 82% 12%, rgba(123, 92, 255, 0.22), transparent 65%);
+    background: radial-gradient(700px 340px at 82% 12%, rgba(123, 92, 255, 0.22), transparent 65%);
   }
   .hero__inner {
     position: relative;
     z-index: 1;
     display: grid;
-    grid-template-columns: 1.15fr 0.85fr;
+    grid-template-columns: 1.05fr 0.95fr;
     gap: 2.5rem;
     align-items: center;
-    padding: 4.5rem 1.25rem 4rem;
+    padding: 4rem 1.25rem 3.5rem;
+  }
+  .hero__lockup {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    flex-wrap: wrap;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+  }
+  .hero__lockup > span {
+    padding-left: 0.9rem;
+    border-left: 1px solid var(--border-strong);
   }
   .hero__title {
-    font-size: clamp(2.6rem, 8vw, 5rem);
+    font-size: clamp(3rem, 10vw, 6rem);
     font-weight: 700;
-    line-height: 0.98;
-    margin: 0.6rem 0 0;
+    line-height: 0.95;
+    margin: 1rem 0 0;
     text-transform: uppercase;
     letter-spacing: -0.03em;
   }
-  .hero__title span { display: block; }
   .hero__blurb {
     max-width: 34rem;
     color: var(--text-dim);
     font-size: 1.02rem;
     margin: 1.25rem 0 1.75rem;
   }
-  .hero__code {
-    margin: 0;
-    font-size: 0.82rem;
-    line-height: 1.75;
-    background: rgba(8, 8, 18, 0.85) !important;
-    box-shadow: 0 30px 80px -30px rgba(123, 92, 255, 0.5);
+
+  .hero__media {
+    position: relative;
+    align-self: stretch;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    min-height: 320px;
   }
-  .hero__code .ln { color: var(--text-faint); user-select: none; }
+  .hero__portrait {
+    width: 100%;
+    max-width: 420px;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 30px 80px rgba(123, 92, 255, 0.35));
+  }
+  .hero__code {
+    position: absolute;
+    left: 0;
+    bottom: 1.5rem;
+    margin: 0;
+    max-width: 60%;
+    font-size: 0.74rem;
+    line-height: 1.7;
+    background: rgba(8, 8, 18, 0.9) !important;
+    backdrop-filter: blur(4px);
+  }
   .hero__code .k { color: #b16cff; }
   .hero__code .s { color: #7dd3fc; }
   .hero__code .fn { color: #8b5cf6; }
   .hero__code .c { color: var(--text-faint); font-style: italic; }
 
   @media (max-width: 860px) {
-    .hero__inner { grid-template-columns: 1fr; gap: 2rem; padding-top: 3.25rem; }
+    .hero__inner { grid-template-columns: 1fr; gap: 1.5rem; padding-top: 3rem; }
+    .hero__media { min-height: 0; justify-content: center; }
+    .hero__portrait { max-width: 260px; }
     .hero__code { display: none; }
   }
 </style>

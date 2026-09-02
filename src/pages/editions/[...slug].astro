@@ -33,7 +33,13 @@ const editFile = `${SITE.repo}/blob/main/src/content/editions/${entry.id}.md`;
 
     {
       d.cover && (
-        <img class="edition__cover" src={withBase(d.cover)} alt={`${d.edition} cover`} loading="eager" />
+        <img
+          class="edition__cover"
+          src={withBase(d.cover)}
+          alt={`${d.edition} cover`}
+          loading="eager"
+          onerror="this.style.display='none'"
+        />
       )
     }
 
