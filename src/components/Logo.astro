@@ -9,26 +9,18 @@ const { height = 20 } = Astro.props;
 const width = Math.round(height * 4.612);
 ---
 
-<span class="logo" style={`--h:${height}px`}>
-  <img
-    class="logo__img"
-    src={withBase('brand/midnight-wordmark-white.png')}
-    alt="Midnight"
-    width={width}
-    height={height}
-    onerror="this.style.display='none';this.nextElementSibling.hidden=false"
-  />
-  <span class="logo__fallback" hidden>Midnight</span>
-</span>
+<img
+  class="logo"
+  src={withBase('brand/midnight-wordmark-white.png')}
+  alt="Midnight"
+  width={width}
+  height={height}
+  style={`height:${height}px`}
+/>
 
 <style>
-  .logo { display: inline-flex; align-items: center; }
-  .logo__img { display: block; height: var(--h); width: auto; }
-  .logo__fallback {
-    font-family: var(--font-display);
-    font-weight: 600;
-    font-size: calc(var(--h) * 0.95);
-    letter-spacing: -0.01em;
-    color: var(--text);
+  .logo {
+    display: block;
+    width: auto;
   }
 </style>
