@@ -1,0 +1,97 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../lib/site';
+import { NEWS_TEMPLATE, EXAMPLE_NEWS } from '../lib/newsTemplate';
+
+const newFileUrl =
+  `${SITE.repo}/new/main/src/content/news` +
+  `?filename=YYYY-MM-DD-short-slug.md` +
+  `&value=${encodeURIComponent(NEWS_TEMPLATE)}`;
+
+const issueUrl = `${SITE.repo}/issues/new?template=news-submission.yml`;
+const contributingUrl = `${SITE.repo}/blob/main/CONTRIBUTING.md`;
+---
+
+<Base title="Contribute" description="How to contribute a Midnight signal via pull request.">
+  <div class="c">
+    <p class="eyebrow">Open archive</p>
+    <h1>Contribute a signal</h1>
+    <p class="c__lede">
+      Midnight Signals is maintained in the open. Anyone can propose a news item
+      through a pull request — no write access needed. Accepted items appear in
+      the <a href="news">news feed</a> and feed into the next monthly edition.
+    </p>
+
+    <h2>The quick path</h2>
+    <ol>
+      <li>
+        <a href={newFileUrl} target="_blank" rel="noopener">
+          Create a new file in <code>src/content/news/</code>
+        </a>
+        directly on GitHub — the link opens the editor with a filled-in template.
+      </li>
+      <li>
+        Name it <code>YYYY-MM-DD-short-slug.md</code>
+        (e.g. <code>2026-08-28-node-2-1-0.md</code>).
+      </li>
+      <li>Fill in the frontmatter and a short paragraph. Commit to a new branch and open a PR.</li>
+      <li>CI builds the site on your PR. A maintainer reviews for accuracy and merges.</li>
+    </ol>
+
+    <h2>Prefer not to touch the repo?</h2>
+    <p>
+      Open a <a href={issueUrl} target="_blank" rel="noopener">news submission issue</a>
+      with the link and a sentence. A maintainer will turn it into an entry.
+    </p>
+
+    <h2>The news item format</h2>
+    <pre><code>{EXAMPLE_NEWS}</code></pre>
+
+    <h3>Fields</h3>
+    <ul>
+      <li><code>title</code> — factual, no hype.</li>
+      <li><code>date</code> — the announcement / release date (<code>YYYY-MM-DD</code>).</li>
+      <li><code>source</code> — a canonical link (release notes, docs, official post).</li>
+      <li><code>category</code> — one of <code>protocol</code>, <code>tooling</code>, <code>ecosystem</code>, <code>governance</code>, <code>research</code>, <code>other</code>.</li>
+      <li><code>summary</code> — one or two skimmable sentences.</li>
+      <li><code>submittedBy</code> — your GitHub handle (optional, for credit).</li>
+    </ul>
+
+    <h2>What gets accepted</h2>
+    <ul>
+      <li>Technically substantive and relevant to people building on Midnight.</li>
+      <li>Backed by a primary source. Claims about Midnight/Compact should be verifiable.</li>
+      <li>Neutral in tone — this is a developer changelog, not marketing.</li>
+    </ul>
+
+    <h2>Publishing a monthly edition</h2>
+    <p>
+      Maintainers add a long-form issue as a Markdown file in
+      <code>src/content/editions/</code>. See
+      <a href={contributingUrl} target="_blank" rel="noopener">CONTRIBUTING.md</a>
+      for the edition frontmatter and the release checklist.
+    </p>
+
+    <div class="c__cta">
+      <a class="btn btn--primary" href={newFileUrl} target="_blank" rel="noopener">
+        Add a news item ↗
+      </a>
+      <a class="btn" href={contributingUrl} target="_blank" rel="noopener">
+        Read CONTRIBUTING.md ↗
+      </a>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .c { padding-top: 2.5rem; }
+  .c h1 { margin: 0.4rem 0 0.75rem; }
+  .c__lede { font-size: 1.12rem; color: var(--text-dim); }
+  .c a { color: #c4a5ff; text-decoration: underline; text-underline-offset: 2px; }
+  .c ol, .c ul { padding-left: 1.3rem; }
+  .c li { margin: 0.45rem 0; }
+  .c pre a { color: inherit; }
+  .c__cta { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2.5rem; }
+  .c__cta a { text-decoration: none; }
+  .c__cta .btn { color: var(--text); }
+</style>

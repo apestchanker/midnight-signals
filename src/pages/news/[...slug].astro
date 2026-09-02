@@ -1,0 +1,103 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { withBase } from '../../lib/path';
+import { SITE, CATEGORY_LABELS } from '../../lib/site';
+import { formatDate } from '../../lib/date';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('news', (n) => !n.data.draft);
+  return entries.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const d = entry.data;
+const dateStr = formatDate(d.date);
+const editFile = `${SITE.repo}/blob/main/src/content/news/${entry.id}.md`;
+---
+
+<Base title={d.title} description={d.summary}>
+  <article class="news-item">
+    <a class="news-item__back" href={withBase('news')}>← News feed</a>
+
+    <div class="news-item__head">
+      <span class="tag">{CATEGORY_LABELS[d.category] ?? d.category}</span>
+      <time datetime={d.date.toISOString()}>{dateStr}</time>
+    </div>
+    <h1>{d.title}</h1>
+    <p class="news-item__lede">{d.summary}</p>
+
+    <div class="prose">
+      <Content />
+    </div>
+
+    <dl class="news-item__facts">
+      <div>
+        <dt>Source</dt>
+        <dd><a href={d.source} target="_blank" rel="noopener">{d.source}</a></dd>
+      </div>
+      {
+        d.submittedBy && (
+          <div>
+            <dt>Submitted by</dt>
+            <dd>
+              <a href={`https://github.com/${d.submittedBy}`} target="_blank" rel="noopener">
+                @{d.submittedBy}
+              </a>
+            </dd>
+          </div>
+        )
+      }
+    </dl>
+
+    <footer class="news-item__footer">
+      <a href={editFile} target="_blank" rel="noopener">Edit on GitHub ↗</a>
+    </footer>
+  </article>
+</Base>
+
+<style>
+  .news-item { padding-top: 2.5rem; }
+  .news-item__back {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--text-faint);
+  }
+  .news-item__head {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 1.5rem 0 0.75rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-faint);
+  }
+  .news-item h1 { margin: 0; }
+  .news-item__lede { font-size: 1.1rem; color: var(--text-dim); }
+  .news-item__facts {
+    margin: 2.5rem 0 0;
+    padding: 1.25rem 1.4rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    display: grid;
+    gap: 0.9rem;
+  }
+  .news-item__facts dt {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+  }
+  .news-item__facts dd { margin: 0.2rem 0 0; word-break: break-word; }
+  .news-item__facts a { color: #c4a5ff; }
+  .news-item__footer {
+    margin-top: 2rem;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+  }
+  .news-item__footer a { color: var(--violet); }
+  .prose :global(a) { color: #c4a5ff; text-decoration: underline; text-underline-offset: 2px; }
+</style>

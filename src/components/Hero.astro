@@ -1,0 +1,86 @@
+---
+import Pillars from './Pillars.astro';
+
+interface Props {
+  kicker?: string;
+  line1: string;
+  line2: string;
+  blurb?: string;
+}
+const { kicker = 'Technical updates for developers', line1, line2, blurb } = Astro.props;
+---
+
+<section class="hero">
+  <div class="grid-floor"></div>
+  <div class="wrap-wide hero__inner">
+    <div class="hero__text">
+      <p class="eyebrow">{kicker}</p>
+      <h1 class="hero__title">
+        <span>{line1}</span>
+        <span class="gradient-text">{line2}</span>
+      </h1>
+      {blurb && <p class="hero__blurb">{blurb}</p>}
+      <Pillars />
+    </div>
+
+    <pre class="hero__code" aria-hidden="true"><code><span class="ln">01</span> <span class="k">import</span> {'{'} Midnight {'}'} <span class="k">from</span> <span class="s">'midnight'</span>;
+<span class="ln">02</span> <span class="k">const</span> app = <span class="k">new</span> <span class="fn">Midnight</span>();
+<span class="ln">03</span>
+<span class="ln">04</span> app.<span class="fn">build</span>();
+<span class="ln">05</span> app.<span class="fn">deploy</span>();
+<span class="ln">06</span>
+<span class="ln">07</span> <span class="c">// privacy by default</span>
+<span class="ln">08</span></code></pre>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+    background:
+      radial-gradient(700px 340px at 82% 12%, rgba(123, 92, 255, 0.22), transparent 65%);
+  }
+  .hero__inner {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 2.5rem;
+    align-items: center;
+    padding: 4.5rem 1.25rem 4rem;
+  }
+  .hero__title {
+    font-size: clamp(2.6rem, 8vw, 5rem);
+    font-weight: 700;
+    line-height: 0.98;
+    margin: 0.6rem 0 0;
+    text-transform: uppercase;
+    letter-spacing: -0.03em;
+  }
+  .hero__title span { display: block; }
+  .hero__blurb {
+    max-width: 34rem;
+    color: var(--text-dim);
+    font-size: 1.02rem;
+    margin: 1.25rem 0 1.75rem;
+  }
+  .hero__code {
+    margin: 0;
+    font-size: 0.82rem;
+    line-height: 1.75;
+    background: rgba(8, 8, 18, 0.85) !important;
+    box-shadow: 0 30px 80px -30px rgba(123, 92, 255, 0.5);
+  }
+  .hero__code .ln { color: var(--text-faint); user-select: none; }
+  .hero__code .k { color: #b16cff; }
+  .hero__code .s { color: #7dd3fc; }
+  .hero__code .fn { color: #8b5cf6; }
+  .hero__code .c { color: var(--text-faint); font-style: italic; }
+
+  @media (max-width: 860px) {
+    .hero__inner { grid-template-columns: 1fr; gap: 2rem; padding-top: 3.25rem; }
+    .hero__code { display: none; }
+  }
+</style>

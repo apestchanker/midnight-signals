@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: "📖 Contributing guide"
+    url: "https://github.com/apestchanker/midnight-signals/blob/main/CONTRIBUTING.md"
+    about: "How to add a news item or a monthly edition via pull request."
+  - name: "🌙 Midnight docs"
+    url: "https://docs.midnight.network"
+    about: "Official Midnight Network documentation."

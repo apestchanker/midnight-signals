@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://apestchanker.github.io/midnight-signals/sitemap-index.xml

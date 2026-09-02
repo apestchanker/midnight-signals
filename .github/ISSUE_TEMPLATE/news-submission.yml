@@ -1,0 +1,68 @@
+name: "📡 News submission"
+description: "Suggest a Midnight technical signal for the feed / next edition"
+title: "[news] "
+labels: ["news-submission"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for contributing a signal! If you're comfortable opening a pull
+        request instead, see the [contributing guide](../blob/main/CONTRIBUTING.md) —
+        it's the fastest path. Otherwise fill this in and a maintainer will add it.
+  - type: input
+    id: headline
+    attributes:
+      label: Headline
+      description: Short and factual, no hype.
+      placeholder: "Midnight Node 2.1.0 prepares the network for Ledger 9"
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Primary source URL
+      description: Release notes, official docs, or an official announcement.
+      placeholder: "https://github.com/midnightntwrk/midnight-node/releases"
+    validations:
+      required: true
+  - type: input
+    id: date
+    attributes:
+      label: Date (YYYY-MM-DD)
+      placeholder: "2026-08-28"
+    validations:
+      required: true
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      options:
+        - protocol
+        - tooling
+        - ecosystem
+        - governance
+        - research
+        - other
+    validations:
+      required: true
+  - type: textarea
+    id: summary
+    attributes:
+      label: Why it matters to developers
+      description: One or two sentences a builder can skim, plus any version details.
+    validations:
+      required: true
+  - type: input
+    id: handle
+    attributes:
+      label: Your GitHub handle (for credit)
+      placeholder: "apestchanker"
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: This is technically substantive and relevant to people building on Midnight.
+          required: true
+        - label: The source is a primary / official link, not a secondary aggregator.
+          required: true

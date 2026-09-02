@@ -1,0 +1,46 @@
+---
+const pillars = [
+  {
+    label: 'Privacy',
+    path: 'M12 2l7 3v6c0 4.5-3 8.3-7 9-4-0.7-7-4.5-7-9V5l7-3z M9.5 12.5l1.8 1.8 3.5-3.8',
+  },
+  { label: 'Build', path: 'M8 5l-5 7 5 7 M16 5l5 7-5 7' },
+  { label: 'Develop', path: 'M8 4c-2 0-3 1-3 3v2c0 1.5-.7 2.5-2 3 1.3.5 2 1.5 2 3v2c0 2 1 3 3 3 M16 4c2 0 3 1 3 3v2c0 1.5.7 2.5 2 3-1.3.5-2 1.5-2 3v2c0 2-1 3-3 3' },
+  { label: 'Deploy', path: 'M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z M12 3v18 M4 7.5l8 4.5 8-4.5' },
+];
+---
+
+<ul class="pillars" aria-label="Focus areas">
+  {
+    pillars.map((p) => (
+      <li>
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d={p.path} />
+        </svg>
+        <span>{p.label}</span>
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  .pillars {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.5rem;
+  }
+  .pillars li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+  .pillars svg { color: var(--violet); }
+</style>

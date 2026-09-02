@@ -1,0 +1,53 @@
+---
+import { SITE } from '../lib/site';
+import { withBase } from '../lib/path';
+---
+
+<footer class="site-footer">
+  <div class="wrap-wide site-footer__inner">
+    <p class="site-footer__note">
+      <strong>{SITE.name}</strong> is an independent, community-maintained archive.
+      Not an official Midnight Foundation publication. Content is provided for
+      informational purposes and may become outdated as the network evolves.
+    </p>
+    <nav class="site-footer__links">
+      <a href={withBase('editions')}>Editions</a>
+      <a href={withBase('news')}>News feed</a>
+      <a href={withBase('contribute')}>Contribute</a>
+      <a href={withBase('rss.xml')}>RSS</a>
+      <a href={SITE.repo} target="_blank" rel="noopener">Source</a>
+    </nav>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    margin-top: 6rem;
+    border-top: 1px solid var(--border);
+    background: var(--bg-elev);
+  }
+  .site-footer__inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem 2rem;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-top: 2.25rem;
+    padding-bottom: 2.75rem;
+  }
+  .site-footer__note {
+    max-width: 34rem;
+    margin: 0;
+    font-size: 0.82rem;
+    line-height: 1.6;
+    color: var(--text-faint);
+  }
+  .site-footer__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--text-dim);
+  }
+</style>

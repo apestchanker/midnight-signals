@@ -1,0 +1,70 @@
+---
+import Logo from './Logo.astro';
+import { withBase } from '../lib/path';
+import { SITE } from '../lib/site';
+
+const nav = [
+  { label: 'Editions', href: withBase('editions') },
+  { label: 'News feed', href: withBase('news') },
+  { label: 'Contribute', href: withBase('contribute') },
+];
+const path = Astro.url.pathname.replace(/\/$/, '');
+---
+
+<header class="site-header">
+  <div class="wrap-wide site-header__inner">
+    <a href={withBase('/')} class="site-header__brand" aria-label={SITE.name}>
+      <Logo />
+    </a>
+    <nav class="site-header__nav">
+      {
+        nav.map((item) => (
+          <a
+            href={item.href}
+            aria-current={path === item.href.replace(/\/$/, '') ? 'page' : undefined}
+          >
+            {item.label}
+          </a>
+        ))
+      }
+      <a class="site-header__gh" href={SITE.repo} target="_blank" rel="noopener">
+        GitHub ↗
+      </a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    backdrop-filter: blur(10px);
+    background: rgba(5, 5, 11, 0.72);
+    border-bottom: 1px solid var(--border);
+  }
+  .site-header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-top: 0.85rem;
+    padding-bottom: 0.85rem;
+  }
+  .site-header__nav {
+    display: flex;
+    align-items: center;
+    gap: 1.35rem;
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    color: var(--text-dim);
+  }
+  .site-header__nav a:hover { color: #fff; }
+  .site-header__nav a[aria-current='page'] { color: var(--text); }
+  .site-header__gh { color: var(--text-faint) !important; }
+
+  @media (max-width: 640px) {
+    .site-header__nav { gap: 0.9rem; font-size: 0.82rem; }
+    .site-header__gh { display: none; }
+  }
+</style>

@@ -1,0 +1,20 @@
+---
+import Base from '../layouts/Base.astro';
+import { withBase } from '../lib/path';
+---
+
+<Base title="Not found">
+  <div class="nf">
+    <p class="eyebrow">404</p>
+    <h1>No signal here</h1>
+    <p>That page doesn't exist, or the archive moved it.</p>
+    <a class="btn btn--primary" href={withBase('/')}>Back to the archive</a>
+  </div>
+</Base>
+
+<style>
+  .nf { padding: 5rem 0; text-align: center; }
+  .nf h1 { margin: 0.4rem 0 0.5rem; }
+  .nf p { color: var(--text-dim); }
+  .nf .btn { margin-top: 1.5rem; }
+</style>

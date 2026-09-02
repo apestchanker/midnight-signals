@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" font-family="'Space Grotesk', Inter, system-ui, sans-serif">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="0.3">
+      <stop offset="0" stop-color="#b16cff"/>
+      <stop offset="0.5" stop-color="#7b5cff"/>
+      <stop offset="1" stop-color="#3b82f6"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.82" cy="0.08" r="0.7">
+      <stop offset="0" stop-color="#7b5cff" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#7b5cff" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="46" height="46" patternUnits="userSpaceOnUse">
+      <path d="M46 0H0V46" fill="none" stroke="#8b5cf6" stroke-opacity="0.28" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="630" fill="#05050b"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <g transform="translate(0 430) skewX(-32)" opacity="0.5">
+    <rect x="-200" y="0" width="1600" height="260" fill="url(#grid)"/>
+  </g>
+
+  <g transform="translate(88 96)">
+    <circle cx="24" cy="24" r="22" fill="none" stroke="#fff" stroke-width="4"/>
+    <circle cx="16" cy="24" r="3.2" fill="#fff"/>
+    <rect x="27" y="11" width="6.5" height="6.5" rx="1.1" fill="#fff"/>
+    <rect x="27" y="30" width="6.5" height="6.5" rx="1.1" fill="#fff"/>
+    <text x="62" y="37" font-size="38" font-weight="600" fill="#fff">midnight</text>
+  </g>
+
+  <text x="86" y="270" font-size="104" font-weight="700" letter-spacing="-3" fill="#fff">SEPTEMBER</text>
+  <text x="86" y="376" font-size="104" font-weight="700" letter-spacing="-3" fill="url(#g)">SIGNALS</text>
+  <text x="90" y="424" font-size="24" letter-spacing="7" fill="#a2a2be">TECHNICAL UPDATES FOR DEVELOPERS</text>
+  <rect x="90" y="448" width="330" height="3" fill="url(#g)"/>
+
+  <g font-family="'JetBrains Mono', monospace" font-size="18" transform="translate(770 118)" opacity="0.82">
+    <text y="0" fill="#6f6f8a">01  <tspan fill="#b16cff">import</tspan><tspan fill="#f5f5fa"> { Midnight } </tspan><tspan fill="#b16cff">from</tspan><tspan fill="#7dd3fc"> 'midnight'</tspan></text>
+    <text y="28" fill="#6f6f8a">02  <tspan fill="#b16cff">const</tspan><tspan fill="#f5f5fa"> app = </tspan><tspan fill="#b16cff">new</tspan><tspan fill="#8b5cf6"> Midnight</tspan><tspan fill="#f5f5fa">();</tspan></text>
+    <text y="84" fill="#6f6f8a">04  <tspan fill="#f5f5fa">app.</tspan><tspan fill="#8b5cf6">build</tspan><tspan fill="#f5f5fa">();</tspan></text>
+    <text y="112" fill="#6f6f8a">05  <tspan fill="#f5f5fa">app.</tspan><tspan fill="#8b5cf6">deploy</tspan><tspan fill="#f5f5fa">();</tspan></text>
+    <text y="168" fill="#6f6f8a">07  <tspan font-style="italic">// privacy by default</tspan></text>
+  </g>
+
+  <g transform="translate(92 506)" font-family="'JetBrains Mono', monospace" font-size="17" letter-spacing="3" fill="#a2a2be">
+    <text x="0" y="0">PRIVACY</text>
+    <text x="170" y="0">BUILD</text>
+    <text x="300" y="0">DEVELOP</text>
+    <text x="470" y="0">DEPLOY</text>
+  </g>
+</svg>

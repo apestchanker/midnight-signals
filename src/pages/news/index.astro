@@ -1,0 +1,82 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import NewsCard from '../../components/NewsCard.astro';
+import { withBase } from '../../lib/path';
+import { SITE } from '../../lib/site';
+import { formatMonth } from '../../lib/date';
+
+const news = (await getCollection('news', (n) => !n.data.draft)).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
+
+const byMonth = new Map<string, typeof news>();
+for (const item of news) {
+  const key = formatMonth(item.data.date);
+  if (!byMonth.has(key)) byMonth.set(key, []);
+  byMonth.get(key)!.push(item);
+}
+---
+
+<Base title="News feed" description="Community-submitted Midnight signals, newest first.">
+  <div class="page-head">
+    <p class="eyebrow">Community</p>
+    <h1>News feed</h1>
+    <p>
+      Signals submitted by the community and curated into the monthly editions.
+      <a href={withBase('contribute')}>Add one →</a>
+    </p>
+  </div>
+
+  {
+    news.length === 0 ? (
+      <div class="empty">
+        <p>No community submissions yet.</p>
+        <a class="btn btn--primary" href={withBase('contribute')}>Be the first to contribute</a>
+      </div>
+    ) : (
+      [...byMonth.entries()].map(([month, items]) => (
+        <section class="news-month">
+          <h2>{month}</h2>
+          {items.map((n) => (
+            <NewsCard
+              id={n.id}
+              title={n.data.title}
+              date={n.data.date}
+              source={n.data.source}
+              category={n.data.category}
+              summary={n.data.summary}
+              submittedBy={n.data.submittedBy}
+            />
+          ))}
+        </section>
+      ))
+    )
+  }
+
+  <p class="news-foot">
+    <a href={`${SITE.repo}/issues/new?template=news-submission.yml`} target="_blank" rel="noopener">
+      Submit a signal via GitHub issue ↗
+    </a>
+  </p>
+</Base>
+
+<style>
+  .page-head { padding-top: 2.5rem; margin-bottom: 2rem; }
+  .page-head h1 { margin: 0.4rem 0 0.6rem; }
+  .page-head p { color: var(--text-dim); margin: 0; }
+  .page-head a { color: var(--violet); }
+  .news-month { margin-bottom: 2.5rem; }
+  .news-month h2 { margin: 0 0 0.5rem; font-size: 1.1rem; color: var(--text-dim); }
+  .empty {
+    padding: 3rem 0;
+    text-align: center;
+    color: var(--text-dim);
+  }
+  .news-foot {
+    margin-top: 2rem;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+  }
+  .news-foot a { color: var(--violet); }
+</style>

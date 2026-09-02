@@ -1,0 +1,80 @@
+---
+import { withBase } from '../lib/path';
+import { formatDate } from '../lib/date';
+
+interface Props {
+  id: string;
+  title: string;
+  edition: string;
+  date: Date;
+  summary: string;
+  tags?: string[];
+  featured?: boolean;
+}
+const { id, title, edition, date, summary, tags = [], featured = false } = Astro.props;
+const dateStr = formatDate(date);
+---
+
+<a href={withBase(`editions/${id}`)} class:list={['edition-card', { 'edition-card--featured': featured }]}>
+  <div class="edition-card__meta">
+    <span class="eyebrow">{edition}</span>
+    <time datetime={date.toISOString()}>{dateStr}</time>
+  </div>
+  <h3 class="edition-card__title">{title}</h3>
+  <p class="edition-card__summary">{summary}</p>
+  <div class="edition-card__footer">
+    {tags.map((t) => <span class="tag">{t}</span>)}
+    <span class="edition-card__cta">Read edition →</span>
+  </div>
+</a>
+
+<style>
+  .edition-card {
+    display: block;
+    padding: 1.5rem 1.6rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    transition: border-color 0.15s, transform 0.15s, background 0.15s;
+  }
+  .edition-card:hover {
+    border-color: var(--border-strong);
+    transform: translateY(-2px);
+    background: var(--surface-2);
+    color: inherit;
+  }
+  .edition-card--featured {
+    background: var(--grad-soft);
+    border-color: rgba(139, 92, 246, 0.35);
+  }
+  .edition-card__meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--text-faint);
+  }
+  .edition-card__title {
+    margin: 0.7rem 0 0;
+    font-size: 1.25rem;
+  }
+  .edition-card__summary {
+    margin: 0.6rem 0 1.1rem;
+    color: var(--text-dim);
+    font-size: 0.95rem;
+  }
+  .edition-card__footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .edition-card__cta {
+    margin-left: auto;
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    color: var(--violet);
+  }
+</style>
