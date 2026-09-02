@@ -68,8 +68,8 @@ config change is needed for a standard `user.github.io/<repo>` deployment.
 ## Brand assets
 
 Official Midnight assets are used **as-is** and live in
-[`public/brand/`](public/brand/README.md) — `midnight-wordmark.svg`,
-`favicon.svg` / `favicon.png`, and the editor `portrait.png`. The Midnight logo
+[`public/brand/`](public/brand/README.md) — `midnight-wordmark-white.png`,
+`midnight-symbol-white.png`, and the editor `portrait.png`. The Midnight logo
 must not be recreated or modified. Missing assets degrade gracefully (the header
 falls back to plain text; the hero omits the portrait).
 

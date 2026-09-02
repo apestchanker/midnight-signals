@@ -1,17 +1,17 @@
 # Brand assets
 
-Official Midnight brand assets, used as-is. **Do not recreate, redraw, or modify
-the Midnight logo.** Replace the files here with the official assets from the
-Midnight brand kit.
+Official Midnight brand assets and the editor portrait, used **as-is**.
+**Do not recreate, redraw, or modify the Midnight logo.** When updating, replace
+these files with the official assets from the Midnight brand kit.
 
 | File | What it is | Used by |
 | --- | --- | --- |
-| `midnight-wordmark.svg` | Horizontal "midnight" wordmark, white/light version | site header, hero lockup (`src/components/Logo.astro`) |
-| `favicon.svg` | Midnight icon mark (square-ish), SVG | browser tab (`src/layouts/Base.astro`) |
-| `favicon.png` | Same icon mark, PNG fallback (32–64px) | browser tab fallback |
+| `midnight-wordmark-white.png` | Official horizontal "midnight" wordmark, white (RGB, @3x) | site header + hero lockup (`src/components/Logo.astro`) |
+| `midnight-symbol-white.png` | Official Midnight symbol mark, white (RGB, @3x) | browser tab icon (`src/layouts/Base.astro`) |
 | `portrait.png` | Editor portrait, transparent background | homepage hero (`src/components/Hero.astro`) |
 
-If `midnight-wordmark.svg` is missing, the header falls back to the plain text
-"Midnight". If `portrait.png` is missing, the hero simply omits the image.
+Graceful degradation: if `midnight-wordmark-white.png` is missing the header
+falls back to the plain text "Midnight"; if `portrait.png` is missing the hero
+omits the image.
 
-Edition key art (e.g. the September cover) goes in `public/covers/`, not here.
+Edition key art (e.g. the September cover) lives in `public/covers/`, not here.

@@ -39,13 +39,6 @@ const {
         decoding="async"
         onerror="this.style.display='none'"
       />
-      <pre class="hero__code" aria-hidden="true"><code><span class="k">import</span> {'{'} Midnight {'}'} <span class="k">from</span> <span class="s">'midnight'</span>;
-<span class="k">const</span> app = <span class="k">new</span> <span class="fn">Midnight</span>();
-
-app.<span class="fn">build</span>();
-app.<span class="fn">deploy</span>();
-
-<span class="c">// privacy by default</span></code></pre>
     </div>
   </div>
 </section>
@@ -102,35 +95,18 @@ app.<span class="fn">deploy</span>();
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
-    min-height: 320px;
+    min-height: 380px;
   }
   .hero__portrait {
     width: 100%;
-    max-width: 420px;
+    max-width: 380px;
     height: auto;
     object-fit: contain;
     filter: drop-shadow(0 30px 80px rgba(123, 92, 255, 0.35));
   }
-  .hero__code {
-    position: absolute;
-    left: 0;
-    bottom: 1.5rem;
-    margin: 0;
-    max-width: 60%;
-    font-size: 0.74rem;
-    line-height: 1.7;
-    background: rgba(8, 8, 18, 0.9) !important;
-    backdrop-filter: blur(4px);
-  }
-  .hero__code .k { color: #b16cff; }
-  .hero__code .s { color: #7dd3fc; }
-  .hero__code .fn { color: #8b5cf6; }
-  .hero__code .c { color: var(--text-faint); font-style: italic; }
-
   @media (max-width: 860px) {
     .hero__inner { grid-template-columns: 1fr; gap: 1.5rem; padding-top: 3rem; }
     .hero__media { min-height: 0; justify-content: center; }
     .hero__portrait { max-width: 260px; }
-    .hero__code { display: none; }
   }
 </style>

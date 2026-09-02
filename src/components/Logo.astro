@@ -5,14 +5,16 @@ interface Props {
   height?: number;
 }
 const { height = 20 } = Astro.props;
+// Official wordmark aspect ratio (4751 x 1030).
+const width = Math.round(height * 4.612);
 ---
 
 <span class="logo" style={`--h:${height}px`}>
   <img
     class="logo__img"
-    src={withBase('brand/midnight-wordmark.svg')}
+    src={withBase('brand/midnight-wordmark-white.png')}
     alt="Midnight"
-    width="120"
+    width={width}
     height={height}
     onerror="this.style.display='none';this.nextElementSibling.hidden=false"
   />
