@@ -1,6 +1,6 @@
 export const SITE = {
   name: 'Midnight Signals',
-  tagline: 'Technical updates for developers',
+  tagline: 'Updates for builders',
   description:
     'A community-maintained archive of Midnight Technical Signals — monthly technical updates for developers building on Midnight.',
   /** Update if you fork this repo. Used for "Edit on GitHub" / "Contribute" links. */

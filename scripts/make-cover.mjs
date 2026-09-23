@@ -1,16 +1,26 @@
 /**
  * Generate a monthly edition cover from the base key art by swapping the month
- * wordmark. The base art (assets/cover-base.png) is the official September key
- * art; this script blacks out the "SEPTEMBER" wordmark and stacks a small
- * qualifier ("EARLY" / "LATE") above the month name, keeping everything else
- * (logo, portrait, SIGNALS, pillars, code, grid) untouched.
+ * wordmark and the tagline beneath "SIGNALS". The base art
+ * (assets/cover-base.png) is the official September key art; this script
+ * blacks out the "SEPTEMBER" wordmark and the "TECHNICAL UPDATES FOR
+ * DEVELOPERS" tagline, stacks a small qualifier ("EARLY" / "LATE") above the
+ * month name, and redraws the tagline, keeping everything else (logo,
+ * portrait, SIGNALS, pillars, code, grid) untouched.
  *
  *   node scripts/make-cover.mjs "EARLY" "SEPTEMBER" public/covers/2026-09.png
  *   node scripts/make-cover.mjs ""      "OCTOBER"   public/covers/2026-10.png
+ *   node scripts/make-cover.mjs "LATE"  "SEPTEMBER" public/covers/2026-09-2.png "UPDATES FOR BUILDERS"
  */
 import sharp from 'sharp';
 
-const [, , QUALIFIER = '', MONTH = 'SEPTEMBER', OUT = 'public/covers/out.png'] = process.argv;
+const [
+  ,
+  ,
+  QUALIFIER = '',
+  MONTH = 'SEPTEMBER',
+  OUT = 'public/covers/out.png',
+  TAGLINE = 'UPDATES FOR BUILDERS',
+] = process.argv;
 const BASE = 'assets/cover-base.png';
 const W = 1536, H = 1024;
 
@@ -33,6 +43,10 @@ const overlay = `<svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/s
   <text x="104" y="${monthBaseline}"
         font-family="Avenir Next, Futura, 'Helvetica Neue', Arial, sans-serif"
         font-weight="800" font-size="120" fill="#ffffff" letter-spacing="1">${MONTH.toUpperCase()}</text>
+  <rect x="80" y="580" width="800" height="60" fill="url(#fade)"/>
+  <text x="104" y="622"
+        font-family="Avenir Next, 'Helvetica Neue', Arial, sans-serif"
+        font-weight="500" font-size="28" fill="#ffffff" letter-spacing="6">${TAGLINE.toUpperCase()}</text>
 </svg>`;
 
 const base = await sharp(BASE).toBuffer();
