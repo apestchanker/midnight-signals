@@ -9,6 +9,7 @@ One image per edition, named to match the edition file:
 | `2026-09-signals-1.md` (Early September) | `2026-09.png` |
 | `2026-09-signals-2.md` (Late September) | `2026-09-2.png` |
 | `2026-11-signals-1.md` (Early November) | `2026-11.png` |
+| `2026-11-signals-2.md` (Late November) | `2026-11-2.png` |
 
 Reference from the edition frontmatter: `cover: "covers/2026-09.png"`.
 
